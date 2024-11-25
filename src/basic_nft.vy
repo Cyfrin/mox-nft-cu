@@ -1,7 +1,7 @@
+# pragma version 0.4.0
 """
-@ version 0.4.0
-@ title: Basic NFT
-@ license: MIT
+@license MIT
+@title Mood NFT
 """
 from snekmate.tokens import erc721
 from snekmate.auth import ownable as ow

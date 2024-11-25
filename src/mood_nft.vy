@@ -1,7 +1,7 @@
+# pragma version 0.4.0
 """
-@ version 0.4.0
-@ license: MIT
-@ title: Mood NFT
+@license MIT
+@title Mood NFT
 """
 
 from snekmate.tokens import erc721
@@ -50,6 +50,33 @@ FINAL_STRING_SIZE: constant(uint256) = (4 * base64._DATA_OUTPUT_BOUND) + 80
 # Initialized storage variables
 initializes: ow
 initializes: erc721[ownable := ow]
+
+exports: (
+    erc721.owner,
+    erc721.balanceOf,
+    erc721.ownerOf,
+    erc721.getApproved,
+    erc721.approve,
+    erc721.setApprovalForAll,
+    erc721.transferFrom,
+    erc721.safeTransferFrom,
+    # erc721.tokenURI, 
+    erc721.totalSupply,
+    erc721.tokenByIndex,
+    erc721.tokenOfOwnerByIndex,
+    erc721.burn,
+    # erc721.safe_mint, 
+    # erc721.set_minter,
+    erc721.permit,
+    erc721.DOMAIN_SEPARATOR,
+    erc721.transfer_ownership,
+    erc721.renounce_ownership,
+    erc721.name,
+    erc721.symbol,
+    erc721.isApprovedForAll,
+    erc721.is_minter,
+    erc721.nonces,
+)
 
 # mood_nft Storage
 token_id_to_mood: public(HashMap[uint256, Mood])
@@ -202,31 +229,3 @@ def set_indice_truncated(
         slice(result, 0, index), chunk_to_set
     )
     return abi_decode(abi_encode(buffer), (String[FINAL_STRING_SIZE]))
-
-
-exports: (
-    erc721.owner,
-    erc721.balanceOf,
-    erc721.ownerOf,
-    erc721.getApproved,
-    erc721.approve,
-    erc721.setApprovalForAll,
-    erc721.transferFrom,
-    erc721.safeTransferFrom,
-    # erc721.tokenURI, 
-    erc721.totalSupply,
-    erc721.tokenByIndex,
-    erc721.tokenOfOwnerByIndex,
-    erc721.burn,
-    # erc721.safe_mint, 
-    # erc721.set_minter,
-    erc721.permit,
-    erc721.DOMAIN_SEPARATOR,
-    erc721.transfer_ownership,
-    erc721.renounce_ownership,
-    erc721.name,
-    erc721.symbol,
-    erc721.isApprovedForAll,
-    erc721.is_minter,
-    erc721.nonces,
-)

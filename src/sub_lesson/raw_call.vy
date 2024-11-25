@@ -1,6 +1,7 @@
+# pragma version 0.4.0
 """
-@ license: GPL-3.0-or-later
-@ version: 0.4.0
+@license GPL-3.0-or-later
+@title Mood NFT
 """
 
 call_anything_address: public(address)
