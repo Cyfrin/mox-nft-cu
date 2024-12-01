@@ -1,7 +1,7 @@
 # pragma version 0.4.0
 """
 @license MIT
-@title Mood NFT
+@title Puppy NFT
 """
 from snekmate.tokens import erc721
 from snekmate.auth import ownable as ow
@@ -38,5 +38,6 @@ def mint(uri: String[432]):
 
 
 @external
+@view
 def get_base_uri() -> String[7]:
     return BASE_URI

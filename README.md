@@ -2,7 +2,12 @@
 
 This is part of the Cyfrin Updraft Vyper Course. 
 
+## Centralized Gateway
+
+Centralized option: https://gateway.pinata.cloud/ipfs/QmanoFs6a4GHRtTW32w1fFJSv61TFT8Vk9qKqFF1mcdjMK
+
 - [Mox NFT](#mox-nft)
+  - [Centralized Gateway](#centralized-gateway)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)

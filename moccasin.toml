@@ -22,8 +22,8 @@ abi = "mood_nft.vy"
 [networks.anvil]
 url = "http://127.0.0.1:8545"
 prompt_live = false
-default_account_name = "anvil1"
-unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
+# default_account_name = "anvil1"
+# unsafe_password_file = "$ANVIL1_PASSWORD_FILE"
 
 
 # You can view all configuration options at https://cyfrin.github.io/moccasin/all_moccasin_toml_parameters.html
