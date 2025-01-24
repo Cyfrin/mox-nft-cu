@@ -42,7 +42,9 @@ EIP_712_VERSION: constant(String[1]) = "1"
 JSON_BASE_URI: constant(
     String[JSON_BASE_URI_SIZE]
 ) = "data:application/json;base64,"
-IMG_BASE_URI: constant(String[IMG_BASE_URI_SIZE]) = "data:image/svg+xml;base64,"
+IMG_BASE_URI: constant(
+    String[IMG_BASE_URI_SIZE]
+) = "data:image/svg+xml;base64,"
 HAPPY_SVG_URI: immutable(String[800])
 SAD_SVG_URI: immutable(String[800])
 FINAL_STRING_SIZE: constant(uint256) = (4 * base64._DATA_OUTPUT_BOUND) + 80
@@ -204,8 +206,8 @@ def svg_to_uri(svg: String[1024]) -> String[FINAL_STRING_SIZE]:
     svg_bytes: Bytes[1024] = convert(svg, Bytes[1024])
     encoded_chunks: DynArray[
         String[4], base64._DATA_OUTPUT_BOUND
-    ] = base64._encode(svg_bytes, True)
-    result: String[FINAL_STRING_SIZE] = JSON_BASE_URI
+    ] = base64._encode(svg_bytes, False)
+    result: String[FINAL_STRING_SIZE] = IMG_BASE_URI
 
     counter: uint256 = IMG_BASE_URI_SIZE
     for encoded_chunk: String[4] in encoded_chunks:

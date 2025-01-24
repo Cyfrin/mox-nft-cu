@@ -7,9 +7,7 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "snekmate",
-]
+dependencies = ["snekmate"]
 
 [networks.contracts.mood_nft]
 deployer_script = "script/deploy_mood_nft.py"
