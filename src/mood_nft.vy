@@ -1,4 +1,4 @@
-# pragma version 0.4.0
+# pragma version 0.4.1
 """
 @license MIT
 @title Mood NFT
@@ -7,6 +7,10 @@
 from snekmate.tokens import erc721
 from snekmate.auth import ownable as ow
 from snekmate.utils import base64
+
+# Initialized storage variables
+initializes: ow
+initializes: erc721[ownable := ow]
 
 # ------------------------------------------------------------------
 #                             ERRORS
@@ -47,9 +51,6 @@ HAPPY_SVG_URI: immutable(String[800])
 SAD_SVG_URI: immutable(String[800])
 FINAL_STRING_SIZE: constant(uint256) = (4 * base64._DATA_OUTPUT_BOUND) + 80
 
-# Initialized storage variables
-initializes: ow
-initializes: erc721[ownable := ow]
 
 exports: (
     erc721.owner,
