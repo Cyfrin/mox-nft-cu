@@ -8,6 +8,10 @@ STARTING_TOKEN_URI = "data:application/json;base64,eyJuYW1lIjoiTW9vZCBORlQiLCAiZ
 
 ENDING_TOKEN_URI = "data:application/json;base64,eyJuYW1lIjoiTW9vZCBORlQiLCAiZGVzY3JpcHRpb24iOiJBbiBORlQgdGhhdCByZWZsZWN0cyB0aGUgbW9vZCBvZiB0aGUgb3duZXIsIDEwMCUgb24gQ2hhaW4hIiwgImF0dHJpYnV0ZXMiOiBbeyJ0cmFpdF90eXBlIjogIm1vb2RpbmVzcyIsICJ2YWx1ZSI6IDEwMH1dLCAiaW1hZ2UiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUIyYVdWM1FtOTRQU0l3SURBZ01qQXdJREl3TUNJZ2QybGtkR2c5SWpRd01DSWdhR1ZwWjJoMFBTSTBNREFpSUhodGJHNXpQU0pvZEhSd09pOHZkM2QzTG5jekxtOXlaeTh5TURBd0wzTjJaeUkrQ2lBZ1BHTnBjbU5zWlNCamVEMGlNVEF3SWlCamVUMGlNVEF3SWlCbWFXeHNQU0o1Wld4c2IzY2lJSEk5SWpjNElpQnpkSEp2YTJVOUltSnNZV05ySWlCemRISnZhMlV0ZDJsa2RHZzlJak1pTHo0S0lDQThaeUJqYkdGemN6MGlaWGxsY3lJK0NpQWdJQ0E4WTJseVkyeGxJR040UFNJM01DSWdZM2s5SWpneUlpQnlQU0l4TWlJdlBnb2dJQ0FnUEdOcGNtTnNaU0JqZUQwaU1USTNJaUJqZVQwaU9ESWlJSEk5SWpFeUlpOCtDaUFnUEM5blBnb2dJRHh3WVhSb0lHUTlJazAxTlNBeE5EQmpNVGN1TkRFdE5ESXVOek1nT0RJdU1qRXRNall1T1NBNE1TNDFNaTB1TnpNaUlITjBlV3hsUFNKbWFXeHNPbTV2Ym1VN0lITjBjbTlyWlRvZ1lteGhZMnM3SUhOMGNtOXJaUzEzYVdSMGFEb2dNenNpTHo0S1BDOXpkbWMrIn0="
 
+HAPPY_SVG_URI = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgIGhlaWdodD0iNDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgZmlsbD0ieWVsbG93IiByPSI3OCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGcgY2xhc3M9ImV5ZXMiPgogICAgPGNpcmNsZSBjeD0iNzAiIGN5PSI4MiIgcj0iMTIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPgogIDwvZz4KICA8cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+Cjwvc3ZnPg=="
+
+SAD_SVG_URI = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiBmaWxsPSJ5ZWxsb3ciIHI9Ijc4IiBzdHJva2U9ImJsYWNrIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8ZyBjbGFzcz0iZXllcyI+CiAgICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjgyIiByPSIxMiIvPgogICAgPGNpcmNsZSBjeD0iMTI3IiBjeT0iODIiIHI9IjEyIi8+CiAgPC9nPgogIDxwYXRoIGQ9Ik01NSAxNDBjMTcuNDEtNDIuNzMgODIuMjEtMjYuOSA4MS41Mi0uNzMiIHN0eWxlPSJmaWxsOm5vbmU7IHN0cm9rZTogYmxhY2s7IHN0cm9rZS13aWR0aDogMzsiLz4KPC9zdmc+"
+
 
 def test_initialized_correctly(mood_nft):
     assert mood_nft.name() == "Mood NFT"
@@ -33,3 +37,17 @@ def test_safe_mint_fails(mood_nft):
     function_selector = "0x" + vyper.utils.method_id("safe_mint(address,string)").hex()
     with pytest.raises(eth.exceptions.Revert):
         boa.env.raw_call(mood_nft.address, data=to_bytes(hexstr=function_selector))
+
+
+def test_mood_nft_svg_to_uri(mood_nft):
+    # Arrange
+    happy_svg = ""
+    sad_svg = ""
+    with open("images/dynamic/happy.svg", "r") as f:
+        happy_svg = f.read()
+    with open("images/dynamic/sad.svg", "r") as f:
+        sad_svg = f.read()
+
+    # Act/Assert
+    assert mood_nft.svg_to_uri(happy_svg) == HAPPY_SVG_URI
+    assert mood_nft.svg_to_uri(sad_svg) == SAD_SVG_URI
